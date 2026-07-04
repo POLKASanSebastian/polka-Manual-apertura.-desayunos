@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+  <html lang="es">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>PÓLKAFE · Manual de Desayunos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+  :root{
+  --paper:#FBF3E2;
+  --paper-2:#F5E9CF;
+  --ink:#241811;
+--ink-soft:#5a4636;
+--marmalade:#E28413;
+  --marmalade-deep:#C56A08;
+  --herb:#4F7A3A;
+--herb-soft:#e4eddc;
+  --danger:#B23A22;
+  --danger-soft:#f6e0d8;
+  --card:#FFFDF7;
+  --line:#e3d3b2;
+  --shadow:0 1px 0 #fff inset, 0 6px 20px -12px rgba(36,24,17,.35);
+  }
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+font-family:'Inter',system-ui,sans-serif;
+line-height:1.5;font-size:16px;
+padding-bottom:64px;
+background-image:radial-gradient(circle at 12% 0%,#fff5df 0%,transparent 42%);
+  }
+  .wrap{max-width:620px;margin:0 auto;padding:0 18px;}
+
+/* ---------- HERO ---------- */
+header{padding:34px 18px 20px;max-width:620px;margin:0 auto;}
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.28em;
+text-transform:uppercase;color:var(--marmalade-deep);font-weight:700;
+  display:flex;align-items:center;gap:9px;
+  }
+.eyebrow::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent);}
+  h1{
+font-family:'Fraunces',serif;font-weight:900;font-size:clamp(40px,13vw,62px);
+  line-height:.92;letter-spacing:-.02em;margin:14px 0 6px;
+  }
+  h1 .kafe{color:var(--marmalade);font-style:italic;font-weight:600;}
+  .sub{font-family:'Fraunces',serif;font-style:italic;font-size:19px;color:var(--ink-soft);margin:0 0 18px;}
+  .meta{
+  display:flex;flex-wrap:wrap;gap:8px;font-size:12.5px;
+  font-family:'JetBrains Mono',monospace;color:var(--ink-soft);
+}
+.chip{background:var(--paper-2);border:1px solid var(--line);border-radius:999px;padding:5px 11px;}
+
+/* ---------- PROGRESS ---------- */
+.progress-wrap{
+  position:sticky;top:0;z-index:20;background:rgba(251,243,226,.92);
+backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+  padding:9px 18px;
+  }
+.progress-inner{max-width:620px;margin:0 auto;display:flex;align-items:center;gap:12px;}
+  .bar{flex:1;height:8px;border-radius:99px;background:var(--paper-2);overflow:hidden;border:1px solid var(--line);}
+  .bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--marmalade),var(--marmalade-deep));transition:width .35s ease;}
+.pcount{font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:700;color:var(--marmalade-deep);white-space:nowrap;}
+
+/* ---------- SECTION CARD ---------- */
+  section{
+  background:var(--card);border:1px solid var(--line);border-radius:18px;
+  margin:16px 0;padding:18px 18px 8px;box-shadow:var(--shadow);
+  }
+  .s-head{display:flex;align-items:baseline;gap:12px;margin-bottom:4px;}
+.num{
+  font-family:'Fraunces',serif;font-weight:900;font-size:30px;line-height:1;
+color:var(--marmalade);flex:none;width:38px;
+  }
+  .s-title{font-family:'Fraunces',serif;font-weight:600;font-size:21px;line-height:1.1;letter-spacing:-.01em;}
+  .s-note{font-size:13.5px;color:var(--ink-soft);margin:2px 0 12px 50px;}
+
+  ul.checks{list-style:none;margin:0 0 6px;padding:0;}
+  ul.checks li{
+  display:flex;gap:12px;align-items:flex-start;
+padding:11px 8px 11px 0;border-top:1px solid #f0e6d0;cursor:pointer;
+transition:opacity .2s;
+}
+ul.checks li:first-child{border-top:none;}
+  .box{
+  flex:none;width:23px;height:23px;border-radius:7px;border:2px solid var(--marmalade);
+margin-top:1px;display:grid;place-items:center;transition:all .18s;background:#fff;
+}
+.box svg{width:14px;height:14px;stroke:#fff;stroke-width:3.4;fill:none;
+stroke-dasharray:20;stroke-dashoffset:20;transition:stroke-dashoffset .22s;}
+  li.done .box{background:var(--marmalade);border-color:var(--marmalade);}
+li.done .box svg{stroke-dashoffset:0;}
+li.done .txt{opacity:.45;text-decoration:line-through;text-decoration-color:var(--marmalade);}
+.txt{font-size:15.5px;}
+  .txt b{font-weight:700;}
+.txt .k{color:var(--marmalade-deep);font-weight:700;}
+
+/* technique inset */
+.tech{
+  margin:6px 0 12px 0;padding:12px 14px;border-radius:12px;
+background:var(--herb-soft);border:1px solid #cadcbd;
+}
+.tech .tag{
+font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;
+text-transform:uppercase;color:var(--herb);font-weight:700;display:block;margin-bottom:4px;
+}
+.tech p{margin:0;font-size:14px;line-height:1.5;color:#324a26;}
+.tech p+p{margin-top:7px;}
+.tech .vid{font-style:italic;color:#5c7a4a;font-size:13px;}
+
+/* ---------- GOLDEN RULES ---------- */
+.rule{
+  border-radius:18px;padding:20px;margin:18px 0;position:relative;overflow:hidden;
+}
+.rule.out{background:var(--ink);color:#FBF3E2;}
+.rule.fridge{background:linear-gradient(155deg,#2f6b3f,#22532f);color:#eaf3e4;}
+.rule .rlabel{
+font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;
+text-transform:uppercase;font-weight:700;opacity:.7;
+}
+.rule h3{font-family:'Fraunces',serif;font-weight:900;font-size:24px;margin:6px 0 12px;line-height:1.05;}
+.rule.out h3{color:#F6B84B;}
+
+.three{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 12px;}
+.three .item{
+flex:1;min-width:90px;text-align:center;background:rgba(255,255,255,.08);
+border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:14px 8px;
+font-family:'Fraunces',serif;font-size:18px;font-weight:600;
+}
+.rule.out .three .item{color:#FBF3E2;}
+.rule p{margin:0;font-size:14.5px;line-height:1.55;opacity:.92;}
+.warnline{
+display:flex;gap:9px;align-items:flex-start;margin-top:12px;
+background:rgba(255,255,255,.1);border-radius:10px;padding:11px 12px;font-size:14px;
+}
+.warnline b{color:#F6B84B;}
+.rule.fridge .warnline b{color:#ffe08a;}
+
+.fridge ul{list-style:none;margin:10px 0 0;padding:0;}
+.fridge ul li{
+padding:9px 0;border-top:1px solid rgba(255,255,255,.14);
+font-size:14.5px;display:flex;gap:10px;align-items:baseline;
+}
+.fridge ul li:first-child{border-top:none;}
+.fridge ul li::before{content:"→";color:#a7d9a0;font-weight:700;}
+.fridge ul li b{color:#fff;}
+
+  /* ---------- FOOTER ---------- */
+footer{max-width:620px;margin:24px auto 0;padding:22px 18px 40px;text-align:center;}
+.sig{font-family:'Fraunces',serif;font-style:italic;font-size:20px;color:var(--ink);}
+.sig small{display:block;font-family:'JetBrains Mono',monospace;font-style:normal;
+font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);margin-top:6px;}
+.reset{
+margin-top:18px;background:none;border:1px solid var(--line);color:var(--ink-soft);
+font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;
+padding:9px 18px;border-radius:999px;cursor:pointer;text-transform:uppercase;
+}
+.reset:active{background:var(--paper-2);}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+:focus-visible{outline:3px solid var(--marmalade);outline-offset:2px;border-radius:6px;}
+</style>
+</head>
+<body>
+
+<div class="progress-wrap">
+<div class="progress-inner">
+<div class="bar"><span id="barFill"></span></div>
+<div class="pcount" id="pCount">0 / 0</div>
+</div>
+</div>
+
+<header>
+<div class="eyebrow">Mise en place · Mañana</div>
+<h1>PÓLKA<span class="kafe">fe</span></h1>
+<p class="sub">Manual de desayunos — el repaso antes de abrir</p>
+<div class="meta">
+<span class="chip">POLKA · Plaza Sarriegui</span>
+<span class="chip">Toca para marcar ✓</span>
+</div>
+</header>
+
+<main class="wrap" id="main">
+
+<section>
+<div class="s-head"><div class="num">1</div><div class="s-title">Pan</div></div>
+<ul class="checks">
+<li><span class="box"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"/></svg></span><span class="txt">Subir al menos <span class="k">5 barras</span> de pan (sobre todo el fin de semana).</span></li>
+<li><span class="box"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"/></svg></span><span class="txt">Mejor tener 5 de más y devolver por el montacargas las que sobren.</span></li>
+</ul>
+</section>
+
+<section>
+<div class="s-head"><div class="num">2</div><div class="s-title">Tostas</div></div>
+  <ul class="checks">
+<li><span class="box"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"/></svg></span><span class="txt">Rebanadas de <span class="k">~60 g</span> aprox. (a veces no llegan; es orientativo).</span></li>
+<li><span class="box"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"/></svg></span><span class="txt">Coger <b>2 barras</b>, cortar y pasar por la tostadora unas <b>3 veces</b>, un punto muy ligero de tostado.</span></li>
+  <li><span class="box"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"/></svg></span><span class="txt">Se <b>rematan al momento</b> del pedido.</span></li>
+</ul>
+</section>
+
+<section>
+<div class="s-head"><div class="num">3</div><div class="s-title">Base de tomate</div></div>
+<ul class="checks">
+<li><span class="box"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"/></svg></span><span class="txt">Tomate rallado con <b>2 dientes de ajo</b>, un poco de aceite de oliva y sal.</span></li>
+  <li><span class="box"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"/></svg></span><span class="txt">Al finalizar, <b>rectificar de sal</b>.</span></li>
+<li><span class="box"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"/></svg></span><span class="txt">Tener siempre <span class="k">2 botellas preparadas</span> en nevera. Si un día no se gastan, al siguiente se prepara algo menos.</span></li>
+  </ul>
+  </section>
+
+  <section>
+  <div class="s-head"><div class="num">4</div><div class="s-title">Untables</div></div>
+  <ul class="checks">
+  <li><span class="box"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"/></svg></span><span class="txt">Aguacates (revisados), <b>guacamole</b>, humus, pesto.</span></li>
+  </ul>
+  </section>
+
+  <section>
+<div class="s-head"><div class="num">5</div><div class="s-title">Tener SIEMPRE</div></div>
+  <ul class="checks">
+  <li><span class="box"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"/></svg></span><span class="txt">Jamón, mozzarella, salmón ahumado, huevos poché y yogur.</span></li>
+</ul>
+  <div class="tech">
+  <span class="tag">Técnica · Jamón</span>
+  <p>Antes de abrir el envase, pasarlo <b>cerrado por el grifo con agua templada</b>. El jamón queda perfecto, sin ese color raro que coge la grasa al dejarlo fuera. <b>No hace falta temperarlo.</b> Queda fenomenal para la tosta y no sale con la grasa.</p>
+<p class="vid">↳ Ver vídeo enviado ayer: se ve el punto exacto.</p>
+</div>
+<div class="tech">
+<span class="tag">Técnica · Huevo poché</span>
+  <p>Sin complicación. Aunque pidan tres tostas, esos tres huevos van a <b>agua caliente de la cafetera</b>. Mientras preparas pan, bandejas y cubiertos, se templan solos y ya los tienes al montar la tosta.</p>
+  <p><b>No sacar huevos por adelantado</b> — irían a la basura. Nada de sacar y volver a guardar lo que sobre. Se saca al momento: la tosta tarda un poquito más, pero la gente lo entiende, queda mejor y es <b>mucho más seguro</b>.</p>
+</div>
+</section>
+
+<section>
+<div class="s-head"><div class="num">6</div><div class="s-title">Frutas y toppings · stock</div></div>
+<p class="s-note">Saber lo que hay = saber cuánto se puede vender.</p>
+  <ul class="checks">
+  <li><span class="box"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"/></svg></span><span class="txt">Contar en cocina: <b>piña, fresa, mango</b>.</span></li>
+  <li><span class="box"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"/></svg></span><span class="txt">Si hay mucho, sin problema. Si por producción hay pocos (ej. 5 de fresa/mango, 5 de piña), <b>hay que saberlo</b> para controlar cuántos se venden.</span></li>
+</ul>
+</section>
+
+<section>
+  <div class="s-head"><div class="num">7</div><div class="s-title">Secos y dulces</div></div>
+<ul class="checks">
+<li><span class="box"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"/></svg></span><span class="txt">Nueces, crema de cacahuete, mermelada, mermelada casera de arándanos, miel, nocilla.</span></li>
+</ul>
+  </section>
+
+  <div class="rule out">
+  <div class="rlabel">Regla de oro · nº 1</div>
+  <h3>Solo esto sale de la nevera a temperar</h3>
+  <div class="three">
+  <div class="item">Tomate</div>
+  <div class="item">Mantequilla</div>
+<div class="item">Pesto</div>
+</div>
+  <p>La mantequilla: coger un poco de la caja de la nevera y dejarla fuera. Así, al pedir una tosta de mantequilla y mermelada o un croissant, está blandita.</p>
+<div class="warnline"><span>⚠️</span><span><b>Nada más</b> sale a temperar. Jamón y huevos incluidos: se quedan en frío y se preparan al momento.</span></div>
+  </div>
+
+  <div class="rule fridge">
+  <div class="rlabel">Regla de oro · nº 2</div>
+  <h3>Revisar bien = tenerlo todo controlado en frío</h3>
+  <p>Quien hace el repaso <b>sabe qué tiene y dónde está cada cosa</b> en la nevera. Si lo controla, no necesita sacarlo. Esa cabeza organizada es el sistema:</p>
+  <ul>
+  <li>El <b>salmón</b>, en su sitio.</li>
+  <li>Las <b>mangas</b> preparadas en su sitio.</li>
+  <li>El <b>guacamole</b>: cuatro aguacates listos a la derecha.</li>
+  <li>Una <b>botella de tomate de emergencia</b> siempre lista.</li>
+<li>La <b>mozzarella</b> que has colocado tú mismo atrás.</li>
+</ul>
+<div class="warnline"><span>🔥</span><span>Si <b>tú revisas</b> y luego <b>tú estás en la tosta</b>, lo encuentras todo fácil. Tener todo fuera es peligroso: una producción dura una semana y no puede estar todo el servicio fuera de la nevera — <b>menos con el calor de esa zona</b>.</span></div>
+</div>
+
+  </main>
+
+<footer>
+  <div class="sig">El equipo PÓLKAFE<small>Buenos días · a abrir</small></div>
+  <button class="reset" id="resetBtn">Reiniciar repaso</button>
+  </footer>
+
+  <script>
+  const items = Array.from(document.querySelectorAll('ul.checks li'));
+  const barFill = document.getElementById('barFill');
+const pCount = document.getElementById('pCount');
+
+function update(){
+  const done = items.filter(i=>i.classList.contains('done')).length;
+const pct = items.length ? Math.round(done/items.length*100) : 0;
+  barFill.style.width = pct + '%';
+  pCount.textContent = done + ' / ' + items.length;
+}
+  items.forEach(li=>{
+  li.setAttribute('role','checkbox');
+  li.setAttribute('tabindex','0');
+li.setAttribute('aria-checked','false');
+  const toggle=()=>{
+  li.classList.toggle('done');
+  li.setAttribute('aria-checked', li.classList.contains('done'));
+  update();
+  };
+  li.addEventListener('click',toggle);
+li.addEventListener('keydown',e=>{
+  if(e.key===' '||e.key==='Enter'){e.preventDefault();toggle();}
+  });
+  });
+  document.getElementById('resetBtn').addEventListener('click',()=>{
+  items.forEach(i=>{i.classList.remove('done');i.setAttribute('aria-checked','false');});
+update();
+  window.scrollTo({top:0,behavior:'smooth'});
+  });
+  update();
+</script>
+  </body>
+  </html>
