@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>PÓLKAFE · Estación de Desayunos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* POLKA · azul Klein · crema · blanco */
+  --paper:#F2E9D2;
+  --paper-2:#E7DBBB;
+  --ink:#0C1533;
+  --ink-soft:#49527a;
+  --klein:#002FA7;
+  --klein-deep:#001C6E;
+  --klein-bright:#1E44D6;
+  --klein-soft:#E6EBFA;
+  --white:#FFFFFF;
+  --line:#ddd0af;
+  --signal:#C0392B; /* rojo funcional · SOLO línea de reposición */
+  --signal-soft:#f6e2de;
+  --shadow:0 1px 0 #fff inset, 0 8px 24px -14px rgba(0,25,90,.35);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:'Inter',system-ui,sans-serif;line-height:1.5;font-size:16px;
+  padding-bottom:60px;
+  background-image:radial-gradient(circle at 90% -5%,#e9edfb 0%,transparent 45%);
+}
+.wrap{max-width:640px;margin:0 auto;padding:0 18px;}
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--klein);font-weight:700;
+  display:flex;align-items:center;gap:9px;
+}
+.eyebrow::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent);}
+
+/* ---------- HERO ---------- */
+header{padding:36px 18px 8px;max-width:640px;margin:0 auto;}
+h1{
+  font-family:'Fraunces',serif;font-weight:900;font-size:clamp(42px,13vw,66px);
+  line-height:.9;letter-spacing:-.025em;margin:14px 0 4px;
+}
+h1 .fe{color:var(--klein);font-style:italic;font-weight:600;}
+.tagline{
+  font-family:'Fraunces',serif;font-style:italic;font-size:21px;color:var(--ink-soft);
+  margin:6px 0 16px;
+}
+.meta{display:flex;flex-wrap:wrap;gap:8px;font-size:12px;font-family:'JetBrains Mono',monospace;color:var(--ink-soft);}
+.chip{background:var(--paper-2);border:1px solid var(--line);border-radius:999px;padding:5px 11px;}
+
+/* ---------- EL MODO ---------- */
+.modo{
+  background:var(--klein);color:#eaeefb;border-radius:20px;padding:22px;margin:20px 0;
+  box-shadow:var(--shadow);
+}
+.modo .k{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;opacity:.7;font-weight:700;}
+.modo h2{font-family:'Fraunces',serif;font-weight:900;font-size:27px;margin:8px 0 16px;color:#fff;line-height:1.05;}
+.pillars{display:grid;gap:10px;}
+.pillar{
+  display:flex;gap:13px;align-items:flex-start;
+  background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);
+  border-radius:12px;padding:13px 15px;
+}
+.pillar .no{font-family:'JetBrains Mono',monospace;font-weight:800;font-size:15px;color:#fff;opacity:.55;flex:none;}
+.pillar b{color:#fff;font-family:'Fraunces',serif;font-weight:600;font-size:16px;}
+.pillar span{display:block;font-size:13.5px;opacity:.85;margin-top:1px;}
+
+/* ---------- SECTION SHELL ---------- */
+.sec-h{margin:30px 0 12px;}
+.sec-h h3{font-family:'Fraunces',serif;font-weight:900;font-size:26px;letter-spacing:-.01em;margin:9px 0 2px;line-height:1;}
+.sec-h p{margin:0;font-size:14px;color:var(--ink-soft);}
+
+/* ---------- CHULETA (spec cards) ---------- */
+.chuleta{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.spec{
+  background:var(--white);border:1px solid var(--line);border-radius:16px;
+  padding:16px 15px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+}
+.spec::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--klein);}
+.spec .lab{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);font-weight:700;}
+.spec .val{font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--klein);line-height:1;margin-top:8px;
+  font-size:clamp(26px,7.5vw,34px);letter-spacing:-.02em;}
+.spec .val small{font-size:14px;letter-spacing:0;}
+.spec .hint{font-size:12.5px;color:var(--ink-soft);margin-top:6px;line-height:1.35;}
+.spec.tofill::before{background:var(--signal);}
+.spec.tofill .val{color:var(--signal);font-size:20px;}
+/* ---------- CHECKLIST (montar estación) ---------- */
+.card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:8px 18px;box-shadow:var(--shadow);margin-top:12px;}
+ul.checks{list-style:none;margin:0;padding:0;}
+ul.checks li{display:flex;gap:13px;align-items:flex-start;padding:13px 0;border-top:1px solid #ece0c4;cursor:pointer;}
+ul.checks li:first-child{border-top:none;}
+.box{flex:none;width:23px;height:23px;border-radius:7px;border:2px solid var(--klein);margin-top:1px;display:grid;place-items:center;transition:all .18s;background:#fff;}
+.box svg{width:14px;height:14px;stroke:#fff;stroke-width:3.4;fill:none;stroke-dasharray:20;stroke-dashoffset:20;transition:stroke-dashoffset .22s;}
+li.done .box{background:var(--klein);border-color:var(--klein);}
+li.done .box svg{stroke-dashoffset:0;}
+li.done .txt{opacity:.45;text-decoration:line-through;text-decoration-color:var(--klein);}
+.txt{font-size:15.5px;}
+.txt b{font-weight:700;}
+.txt .n{font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--klein);}
+
+/* ---------- FICHAS DE TOSTA ---------- */
+.ficha{
+  background:var(--white);border:1px solid var(--line);border-radius:18px;
+  overflow:hidden;box-shadow:var(--shadow);margin-top:14px;
+}
+.ficha-top{display:flex;gap:0;}
+.photo-slot{
+  flex:none;width:130px;background:var(--klein-soft);border-right:1px dashed var(--klein);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;
+  padding:14px 8px;text-align:center;min-height:130px;
+}
+.photo-slot svg{width:30px;height:30px;stroke:var(--klein);fill:none;stroke-width:1.6;opacity:.8;}
+.photo-slot span{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--klein);font-weight:700;line-height:1.4;}
+.ficha-body{flex:1;padding:15px 16px;}
+.ficha-body h4{font-family:'Fraunces',serif;font-weight:900;font-size:20px;margin:0 0 8px;letter-spacing:-.01em;}
+.ficha-body .ing{font-size:13.5px;color:var(--ink);line-height:1.55;margin:0 0 4px;}
+.ficha-body .ing b{font-family:'JetBrains Mono',monospace;color:var(--klein);font-weight:700;}
+.ficha-body .fill{color:var(--signal);font-family:'JetBrains Mono',monospace;font-weight:700;}
+.montaje{border-top:1px solid #ece0c4;padding:11px 16px 13px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
+.montaje .ml{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);font-weight:700;width:100%;margin-bottom:3px;}
+.montaje .m{display:inline-flex;align-items:center;gap:6px;font-size:13px;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:5px 9px;}
+.montaje .m i{font-family:'JetBrains Mono',monospace;font-style:normal;font-weight:800;color:var(--klein);}
+.montaje .arr{color:var(--ink-soft);font-weight:700;}
+.qr-note{display:flex;align-items:center;gap:8px;background:var(--klein-soft);border-top:1px dashed var(--klein);padding:9px 16px;font-size:12px;color:var(--klein-deep);}
+.qr-box{flex:none;width:26px;height:26px;border:1.5px solid var(--klein);border-radius:5px;display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-weight:800;font-size:9px;color:var(--klein);}
+
+/* ---------- PARES DE STOCK ---------- */
+.pares{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:6px 18px;box-shadow:var(--shadow);margin-top:12px;}
+.par{display:flex;align-items:center;gap:12px;padding:13px 0;border-top:1px solid #ece0c4;}
+.par:first-child{border-top:none;}
+.par .name{font-weight:600;flex:1;font-size:15.5px;}
+.par .amt{font-family:'JetBrains Mono',monospace;font-weight:800;font-size:18px;color:var(--klein);}
+.par .amt.tofill{color:var(--signal);font-size:14px;}
+.par .redline{flex:none;width:54px;height:26px;border-radius:6px;background:linear-gradient(var(--klein-soft),var(--klein-soft));position:relative;border:1px solid var(--line);overflow:hidden;}
+.par .redline::after{content:"";position:absolute;left:0;right:0;top:62%;height:2.5px;background:var(--signal);}
+.par .redline i{position:absolute;left:0;bottom:0;right:0;height:38%;background:var(--klein);opacity:.18;}
+.redkey{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-soft);padding:12px 0 4px;border-top:1px solid #ece0c4;margin-top:2px;}
+.redkey .dash{width:22px;height:2.5px;background:var(--signal);flex:none;}
+/* ---------- SECUENCIA (timeline) ---------- */
+.principle{background:var(--klein);color:#eaeefb;border-radius:16px;padding:16px 18px;margin:12px 0;box-shadow:var(--shadow);}
+.principle p{margin:0;font-family:'Fraunces',serif;font-size:18px;font-weight:600;line-height:1.3;}
+.principle em{color:#fff;font-style:italic;}
+.timeline{position:relative;margin:14px 0 4px;padding-left:4px;}
+.step{position:relative;padding:0 0 18px 44px;}
+.step::before{content:"";position:absolute;left:15px;top:26px;bottom:-4px;width:2px;background:var(--line);}
+.step:last-child::before{display:none;}
+.step .dot{position:absolute;left:0;top:0;width:32px;height:32px;border-radius:50%;background:var(--klein);color:#fff;display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-weight:800;font-size:15px;box-shadow:0 2px 8px -2px rgba(0,47,167,.55);}
+.step h5{font-family:'Fraunces',serif;font-weight:600;font-size:17px;margin:4px 0 3px;line-height:1.2;}
+.step p{margin:0;font-size:14px;color:var(--ink-soft);line-height:1.5;}
+.step p b{color:var(--ink);}
+
+/* ---------- REGLAS DE ORO ---------- */
+.rule{border-radius:18px;padding:20px;margin:12px 0;color:#eaeefb;box-shadow:var(--shadow);}
+.rule.a{background:var(--klein);}
+.rule.b{background:linear-gradient(155deg,#0C1747,var(--klein-deep));}
+.rule .rl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;opacity:.72;}
+.rule h4{font-family:'Fraunces',serif;font-weight:900;font-size:22px;margin:6px 0 12px;color:#fff;line-height:1.08;}
+.three{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 6px;}
+.three .item{flex:1;min-width:88px;text-align:center;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);border-radius:12px;padding:14px 8px;font-family:'Fraunces',serif;font-size:18px;font-weight:600;color:#fff;}
+.rule p{margin:10px 0 0;font-size:14px;line-height:1.55;opacity:.94;}
+.rule p b{color:#fff;}
+
+/* ---------- COMPLETAR ---------- */
+.completar{background:var(--signal-soft);border:1px solid #e6b6ae;border-left:5px solid var(--signal);border-radius:14px;padding:16px 18px;margin:20px 0;}
+.completar h4{font-family:'Fraunces',serif;font-weight:900;font-size:18px;margin:0 0 6px;color:#8a2b1f;}
+.completar p{margin:0 0 8px;font-size:13.5px;color:#6d2a20;}
+.completar ul{margin:0;padding-left:18px;font-size:14px;color:#5a2018;}
+.completar li{padding:2px 0;}
+.completar li b{color:var(--signal);}
+
+/* ---------- FOOTER ---------- */
+footer{max-width:640px;margin:26px auto 0;padding:22px 18px 40px;text-align:center;}
+.sig{font-family:'Fraunces',serif;font-style:italic;font-size:20px;}
+.sig small{display:block;font-family:'JetBrains Mono',monospace;font-style:normal;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);margin-top:6px;}
+.reset{margin-top:18px;background:none;border:1px solid var(--line);color:var(--ink-soft);font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;padding:9px 18px;border-radius:999px;cursor:pointer;text-transform:uppercase;}
+.reset:active{background:var(--paper-2);}
+
+@media (max-width:420px){.chuleta{grid-template-columns:1fr;}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+:focus-visible{outline:3px solid var(--klein);outline-offset:2px;border-radius:6px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Estación de desayunos</div>
+  <h1>PÓLKA<span class="fe">fe</span></h1>
+  <p class="tagline">Un solo modo. Fácil, claro e igual cada día.</p>
+  <div class="meta">
+    <span class="chip">POLKA · Plaza Sarriegui</span>
+    <span class="chip">Copia la ficha, no la memoria</span>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- EL MODO -->
+<div class="modo">
+  <span class="k">La filosofía</span>
+  <h2>Aquí no se improvisa: se ejecuta</h2>
+  <div class="pillars">
+    <div class="pillar"><span class="no">01</span><div><b>Números, no ojo</b><span>Gramos, minutos y punto de máquina. Lo que está escrito manda.</span></div></div>
+    <div class="pillar"><span class="no">02</span><div><b>Cada cosa, su sitio</b><span>La estación se monta idéntica cada día. Si falta algo, se ve de un vistazo.</span></div></div>
+    <div class="pillar"><span class="no">03</span><div><b>Copia la foto</b><span>Cada tosta tiene su ficha con foto. Igualas la imagen y está bien hecha.</span></div></div>
+  </div>
+</div>
+
+<!-- LA CHULETA -->
+<div class="sec-h">
+  <div class="eyebrow">No pienses · mide</div>
+  <h3>La chuleta</h3>
+  <p>Los números fijos. Nunca a ojo.</p>
+</div>
+<div class="chuleta">
+  <div class="spec"><div class="lab">Tostadora</div><div class="val">Punto medio</div><div class="hint">De cadena: punto medio y marcha. El pan entra y sale solo.</div></div>
+  <div class="spec"><div class="lab">Huevo poché</div><div class="val">3 <small>min</small></div><div class="hint">En el agua caliente de la cafetera. Se templa mientras montas.</div></div>
+  <div class="spec"><div class="lab">Tosta · pan</div><div class="val">60 <small>g</small></div><div class="hint">Corta a la marca. Dos rebanadas por tosta.</div></div>
+  <div class="spec"><div class="lab">Base de tomate</div><div class="val">2 <small>ajos/bote</small></div><div class="hint">Tomate rallado + aceite + sal. Rectificar al final. 2 botes listos.</div></div>
+</div>
+<!-- MONTAR ESTACIÓN -->
+<div class="sec-h">
+  <div class="eyebrow">Antes de abrir</div>
+  <h3>Monta la estación</h3>
+  <p>Igual cada mañana. Marca según lo dejas listo.</p>
+</div>
+<div class="card">
+  <ul class="checks">
+    <li><span class="box"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"/></svg></span><span class="txt">Subir <span class="n">5</span> barras de pan mínimo (más el finde). Las que sobren, de vuelta por el montacargas.</span></li>
+    <li><span class="box"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"/></svg></span><span class="txt">Cortar tostas a <span class="n">60 g</span> y dejarlas listas para rematar en tostadora al pedido.</span></li>
+    <li><span class="box"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"/></svg></span><span class="txt"><span class="n">2</span> botes de tomate preparados en nevera. Si sobró, hoy se hace algo menos.</span></li>
+    <li><span class="box"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"/></svg></span><span class="txt">Sacar a temperar <b>solo</b>: tomate, mantequilla y pesto. Nada más.</span></li>
+    <li><span class="box"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"/></svg></span><span class="txt">Repasar la nevera: cada cosa en su hueco (salmón, mangas, guacamole a la derecha, mozzarella detrás).</span></li>
+    <li><span class="box"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"/></svg></span><span class="txt">Contar frutas y toppings contra su <b>par</b> (ver abajo). Lo que esté bajo la línea roja, reponer.</span></li>
+  </ul>
+</div>
+
+<!-- FICHAS -->
+<div class="sec-h">
+  <div class="eyebrow">Copia la imagen</div>
+  <h3>Fichas de tosta</h3>
+  <p>Una por producto. Ingredientes exactos, montaje y foto del plato terminado.</p>
+</div>
+
+<div class="ficha">
+  <div class="ficha-top">
+    <div class="photo-slot"><svg viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h2l1.5-2h7L19 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="4"/></svg><span>Foto<br>plato final</span></div>
+    <div class="ficha-body">
+      <h4>Tosta de salmón</h4>
+      <p class="ing">Base tomate · salmón ahumado <span class="fill">___ g</span> · <span class="fill">completar toppings</span></p>
+      <p class="ing">Pan <b>60 g</b> · tostadora punto medio</p>
+    </div>
+  </div>
+  <div class="montaje"><span class="ml">Montaje</span><span class="m"><i>1</i> tostar</span><span class="arr">→</span><span class="m"><i>2</i> base tomate</span><span class="arr">→</span><span class="m"><i>3</i> salmón</span><span class="arr">→</span><span class="m"><i>4</i> toppings</span></div>
+</div>
+
+<div class="ficha">
+  <div class="ficha-top">
+    <div class="photo-slot"><svg viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h2l1.5-2h7L19 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="4"/></svg><span>Foto<br>plato final</span></div>
+    <div class="ficha-body">
+      <h4>Tosta de guacamole</h4>
+      <p class="ing">Guacamole (par: <b>4 aguacates</b> listos a la derecha) · <span class="fill">___ g por tosta</span></p>
+      <p class="ing">Pan <b>60 g</b> · tostadora punto medio</p>
+    </div>
+  </div>
+  <div class="montaje"><span class="ml">Montaje</span><span class="m"><i>1</i> tostar</span><span class="arr">→</span><span class="m"><i>2</i> guacamole</span><span class="arr">→</span><span class="m"><i>3</i> toppings</span></div>
+</div>
+
+<div class="ficha">
+  <div class="ficha-top">
+    <div class="photo-slot"><svg viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h2l1.5-2h7L19 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="4"/></svg><span>Foto<br>plato final</span></div>
+    <div class="ficha-body">
+      <h4>Tosta de tomate y jamón</h4>
+      <p class="ing">Base tomate · jamón <span class="fill">___ g</span></p>
+      <p class="ing">Pan <b>60 g</b> · tostadora punto medio</p>
+    </div>
+  </div>
+  <div class="montaje"><span class="ml">Montaje</span><span class="m"><i>1</i> tostar</span><span class="arr">→</span><span class="m"><i>2</i> base tomate</span><span class="arr">→</span><span class="m"><i>3</i> jamón</span></div>
+  <div class="qr-note"><span class="qr-box">QR</span><span><b>Técnica jamón:</b> envase cerrado por el grifo con agua templada antes de abrir. Pega aquí el QR al vídeo.</span></div>
+</div>
+
+<div class="ficha">
+  <div class="ficha-top">
+    <div class="photo-slot"><svg viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h2l1.5-2h7L19 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="4"/></svg><span>Foto<br>plato final</span></div>
+    <div class="ficha-body">
+      <h4>Mantequilla y mermelada · Croissant</h4>
+      <p class="ing">Mantequilla temperada (siempre fuera) · mermelada / casera de arándanos</p>
+      <p class="ing">Croissant a la plancha o tostadora si aplica</p>
+    </div>
+  </div>
+  <div class="montaje"><span class="ml">Montaje</span><span class="m"><i>1</i> tostar/plancha</span><span class="arr">→</span><span class="m"><i>2</i> mantequilla</span><span class="arr">→</span><span class="m"><i>3</i> mermelada</span></div>
+</div>
+
+<div class="qr-note" style="border-radius:14px;border:1px dashed var(--klein);margin-top:12px;">
+  <span class="qr-box">QR</span><span><b>Huevo poché · 3 min:</b> pega aquí el QR al vídeo de cómo se hace en el agua de la cafetera.</span>
+</div>
+<!-- PARES DE STOCK -->
+<div class="sec-h">
+  <div class="eyebrow">Gestión visual</div>
+  <h3>Pares de stock</h3>
+  <p>Cada producto tiene su cantidad fija. Bajo la línea roja = reponer.</p>
+</div>
+<div class="pares">
+  <div class="par"><span class="name">Piña (raciones)</span><span class="amt tofill">par ___</span><span class="redline"><i></i></span></div>
+  <div class="par"><span class="name">Fresa · mango</span><span class="amt tofill">par ___</span><span class="redline"><i></i></span></div>
+  <div class="par"><span class="name">Aguacates (guacamole)</span><span class="amt">4</span><span class="redline"><i></i></span></div>
+  <div class="par"><span class="name">Botes de tomate</span><span class="amt">2</span><span class="redline"><i></i></span></div>
+  <div class="redkey"><span class="dash"></span> Línea roja = mínimo. Por debajo, se repone antes del servicio.</div>
+</div>
+
+<!-- SECUENCIA -->
+<div class="sec-h">
+  <div class="eyebrow">Durante el servicio</div>
+  <h3>La secuencia</h3>
+  <p>Un solo orden de montaje. Igual en cada tanda.</p>
+</div>
+<div class="principle"><p>Todo sale <em>a la vez</em>. Si no, la tosta se reblandece y el café se enfría. Nunca las tostas y los cafés con 10 minutos de diferencia.</p></div>
+<div class="timeline">
+  <div class="step"><div class="dot">1</div><h5>Arranca lo que tarda</h5><p>Huevos al agua de la cafetera (<b>3 min</b>). Se van templando solos.</p></div>
+  <div class="step"><div class="dot">2</div><h5>Suelta las cortas</h5><p>Pasa ya los <b>cafés</b> sueltos. No esperan a la comanda grande.</p></div>
+  <div class="step"><div class="dot">3</div><h5>Todas las tostas a la tostadora</h5><p>El <b>total</b> de tostas de la tanda. Si hay croissant, lo preparas mientras pasan.</p></div>
+  <div class="step"><div class="dot">4</div><h5>Cierra las simples</h5><p>Croissant + café con leche fuera. La comanda grande ya va al <b>50%</b>.</p></div>
+  <div class="step"><div class="dot">5</div><h5>Monta y remata</h5><p>Montas las de <b>salmón</b>, pones el huevo templado y sacas. Solo quedan los cafés.</p></div>
+</div>
+
+<!-- REGLAS -->
+<div class="sec-h"><div class="eyebrow">Innegociable</div><h3>Reglas de oro</h3></div>
+<div class="rule a">
+  <div class="rl">Regla 1</div>
+  <h4>Solo esto sale de la nevera</h4>
+  <div class="three"><div class="item">Tomate</div><div class="item">Mantequilla</div><div class="item">Pesto</div></div>
+  <p><b>Nada más</b> se tempera. Jamón y huevos incluidos: en frío y al momento.</p>
+</div>
+<div class="rule b">
+  <div class="rl">Regla 2</div>
+  <h4>Todo en frío, todo controlado</h4>
+  <p>Cada cosa en su hueco de la nevera. Una producción dura una semana y <b>no puede estar el servicio entero fuera</b> — menos con el calor de esa zona.</p>
+</div>
+<div class="rule a">
+  <div class="rl">Regla 3</div>
+  <h4>Tiempo, forma y temperatura</h4>
+  <p>El pan, sea cual sea la base, <b>no aguanta montado</b>. Se prepara y sale. Tosta caliente, café recién hecho, todo a la vez.</p>
+</div>
+
+<!-- COMPLETAR -->
+<div class="completar">
+  <h4>⚠ Completar en barra</h4>
+  <p>Estos números aún no están fijados. Rellénalos con Mikel y quedan cerrados para siempre:</p>
+  <ul>
+    <li>Gramos de <b>salmón</b> por tosta</li>
+    <li>Gramos de <b>guacamole</b> por tosta</li>
+    <li>Gramos de <b>jamón</b> por tosta</li>
+    <li><b>Par</b> de piña, fresa y mango (y dónde va la línea roja)</li>
+    <li><b>Fotos</b> del plato final de cada tosta + <b>QR</b> de los vídeos (jamón y huevo)</li>
+  </ul>
+</div>
+
+</main>
+
+<footer>
+  <div class="sig">El equipo PÓLKAFE<small>Un solo modo · a abrir</small></div>
+  <button class="reset" id="resetBtn">Reiniciar repaso</button>
+</footer>
+
+<script>
+const items = Array.from(document.querySelectorAll('ul.checks li'));
+items.forEach(li=>{
+  li.setAttribute('role','checkbox');li.setAttribute('tabindex','0');li.setAttribute('aria-checked','false');
+  const t=()=>{li.classList.toggle('done');li.setAttribute('aria-checked',li.classList.contains('done'));};
+  li.addEventListener('click',t);
+  li.addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();t();}});
+});
+document.getElementById('resetBtn').addEventListener('click',()=>{
+  items.forEach(i=>{i.classList.remove('done');i.setAttribute('aria-checked','false');});
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+</script>
+</body>
+</html>
